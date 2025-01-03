@@ -10,9 +10,20 @@ else
       -c) cjam_code="$2"
           exec $java "$jclass" <(printf "%s" "$cjam_code") "${@:3}"
           break ;;
-      -h) echo "$src"
+      -h) echo "Usage:"
+          echo " $0                              start a REPL"
+          echo " $0 [OPTIONS]... <cjam file>     execute the given file"
+          echo " $0 [OPTIONS]... -c <cjam code>  execute literal CJam code"
+          echo " $0 -h                           display this help"
+          echo " $0 -s                           display path to sources"
+          echo
+          echo "Options:"
+          echo " -r  run multiple iterations (JamCode)"
+          echo
           exit 0 ;;
-      -*) echo "cjam: unknown flag: $1" >&2
+      -s) echo "$src"
+          exit 0 ;;
+      -*) echo "cjam: unknown option: $1" >&2
           exit 1 ;;
       *)  exec $java "$jclass" "$@"
           break ;;
