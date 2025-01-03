@@ -5,7 +5,6 @@
   jdk11 ? pkgs.jdk11_headless
 , ant ? pkgs.ant
 , jre ? pkgs.jre_minimal
-, coreutils ? pkgs.coreutils
 , rlwrap ? pkgs.rlwrap
 }:
 let
@@ -44,7 +43,7 @@ let
 in
   pkgs.writeShellApplication {
     name = "cjam";
-    runtimeInputs = [ coreutils jre rlwrap ];
+    runtimeInputs = [ jre rlwrap ];
     text = ''
       java='java -cp ${cjam-jar}/share/java/cjam.jar'
       src='${src}'
