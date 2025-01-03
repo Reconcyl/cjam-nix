@@ -6,6 +6,7 @@
 , ant ? pkgs.ant
 , jre ? pkgs.jre_minimal
 , coreutils ? pkgs.coreutils
+, rlwrap ? pkgs.rlwrap
 }:
 let
   src = pkgs.fetchzip {
@@ -43,7 +44,7 @@ let
 in
   pkgs.writeShellApplication {
     name = "cjam";
-    runtimeInputs = [ coreutils jre ];
+    runtimeInputs = [ coreutils jre rlwrap ];
     text = ''
       java='java -cp ${cjam-jar}/share/java/cjam.jar'
       src='${src}'

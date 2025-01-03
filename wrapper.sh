@@ -1,6 +1,7 @@
 if [[ "$#" -eq 0 ]]; then
   jclass='net.aditsu.cjam.Shell'
-  exec $java "$jclass" "$@"
+  # shellcheck disable=SC2086
+  exec rlwrap -O"> " -S"> " -- $java "$jclass" "$@"
 else
   jclass='net.aditsu.cjam.CJam'
   while [[ "$#" -gt 0 ]]; do
